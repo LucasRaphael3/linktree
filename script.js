@@ -14,7 +14,45 @@ document.addEventListener('DOMContentLoaded', () => {
         return; // Para a execução do script se o botão não for encontrado.
     }
 
-    // Função para aplicar o tema (sem alterações)
+    const links = [
+        {
+          url: "https://lucasraphael3.github.io/",
+          icon: "briefcase",
+          title: "Portfólio Profissional",
+          description: "Conheça meus projetos e experiências"
+        },
+        {
+          url: "https://github.com/LucasRaphael3",
+          icon: "code",
+          title: "GitHub",
+          description: "Veja meus códigos e projetos open source"
+        },
+        {
+          url: "https://buymeacoffee.com/lucasraphael",
+          icon: "coffee",
+          title: "Buy Me a Coffee",
+          description: "Apoie meu trabalho com um cafezinho"
+        }
+      ];
+
+    links.forEach(link => {
+        const card = document.createElement("a");
+        card.href = link.url;
+        card.target = "_blank";
+        card.className = "link-card";
+    
+        card.innerHTML = `
+          <div class="link-icon"><i data-lucide="${link.icon}"></i></div>
+          <div class="link-text">
+            <strong>${link.title}</strong>
+            <span>${link.description}</span>
+          </div>
+          <div class="link-action"><i data-lucide="arrow-up-right"></i></div>
+        `;
+    
+        linksContainer.appendChild(card);
+      });
+    
     const applyTheme = () => {
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -45,4 +83,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Aplica o tema inicial
     applyTheme();
+
 });
